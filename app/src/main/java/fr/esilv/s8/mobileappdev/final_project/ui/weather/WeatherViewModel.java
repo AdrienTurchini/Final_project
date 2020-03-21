@@ -18,18 +18,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WeatherViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<String> weatherText;
 
     public WeatherViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is weather fragment");
+        weatherText = new MutableLiveData<>();
+        weatherText.setValue("This is weather fragment");
         getCurrentData();
     }
 
     public LiveData<String> getText() {
-        return mText;
+        return weatherText;
     }
 
     public static String BaseUrl = "http://api.openweathermap.org/";
@@ -69,13 +68,13 @@ public class WeatherViewModel extends ViewModel {
                             "Pressure: " +
                             weatherResponse.main.pressure;
 
-                    mText.setValue(stringBuilder);
+                    weatherText.setValue(stringBuilder);
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<WeatherResponse> call, @NonNull Throwable t) {
-                mText.setValue(t.getMessage());
+                weatherText.setValue(t.getMessage());
             }
         });
     }
