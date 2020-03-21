@@ -2,6 +2,8 @@ package fr.esilv.s8.mobileappdev.final_project.ui.Asso;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ public class Asso extends AppCompatActivity {
 
     private TextView mName;
     private Button mButton;
+    private RecyclerView rv;
+
 
 
 
@@ -36,6 +40,11 @@ public class Asso extends AppCompatActivity {
         }
 
         mButton = (Button) findViewById(R.id.activity_asso_close);
+        mName = (TextView) findViewById(R.id.activity_asso_name);
+
+        rv = (RecyclerView) findViewById(R.id.acticity_asso_rv);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(new AdapterAsso());
 
 
 
