@@ -52,14 +52,11 @@ public class AdapterTeam extends RecyclerView.Adapter<AdapterTeam.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-
-
         private final ImageView image;
         private final TextView description;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
-
             image = ((ImageView) itemView.findViewById(R.id.photo));
             description = ((TextView) itemView.findViewById(R.id.description));
         }
