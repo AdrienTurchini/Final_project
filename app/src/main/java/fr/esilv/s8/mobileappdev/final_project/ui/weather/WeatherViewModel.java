@@ -33,8 +33,9 @@ public class WeatherViewModel extends ViewModel {
 
     public static String BaseUrl = "http://api.openweathermap.org/";
     public static String AppId = "7d05663265bf2d1761640846a820923a";
-    public static String lat = "35";
-    public static String lon = "139";
+    public static String lat = "45.4149700";
+    public static String lon = "6.56500";
+    public static String city = "Megeve";
 
     void getCurrentData() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -42,7 +43,8 @@ public class WeatherViewModel extends ViewModel {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         WeatherService service = retrofit.create(WeatherService.class);
-        Call<WeatherResponse> call = service.getCurrentWeatherData(lat, lon, AppId);
+        //Call<WeatherResponse> call = service.getCurrentWeatherData(lat, lon, AppId);
+        Call<WeatherResponse> call = service.getCurrentWeatherData(city, AppId);
         call.enqueue(new Callback<WeatherResponse>() {
             @Override
             public void onResponse(@NonNull Call<WeatherResponse> call, @NonNull Response<WeatherResponse> response) {
@@ -50,23 +52,35 @@ public class WeatherViewModel extends ViewModel {
                     WeatherResponse weatherResponse = response.body();
                     assert weatherResponse != null;
 
+                    double temp = weatherResponse.main.temp - (273.15);
+                    temp = Math.round(temp * 100.0)/100.0;
+
+                    double tempMin = weatherResponse.main.temp_min - (273.15);
+                    tempMin = Math.round(tempMin * 100.0)/100.0;
+
+                    double tempMax = weatherResponse.main.temp_max - (273.15);
+                    tempMax = Math.round(tempMax * 100.0)/100.0;
+
                     String stringBuilder = "Country: " +
                             weatherResponse.sys.country +
                             "\n" +
                             "Temperature: " +
-                            weatherResponse.main.temp +
+                            temp +
                             "\n" +
                             "Temperature(Min): " +
-                            weatherResponse.main.temp_min +
+                            tempMin+
                             "\n" +
                             "Temperature(Max): " +
-                            weatherResponse.main.temp_max +
+                            tempMax +
                             "\n" +
                             "Humidity: " +
                             weatherResponse.main.humidity +
                             "\n" +
                             "Pressure: " +
-                            weatherResponse.main.pressure;
+                            weatherResponse.main.pressure +
+                            "\n" +
+                            "City Name : " +
+                            weatherResponse.name;
 
                     weatherText.setValue(stringBuilder);
                 }
