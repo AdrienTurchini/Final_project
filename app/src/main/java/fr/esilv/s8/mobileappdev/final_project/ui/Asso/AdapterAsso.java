@@ -3,10 +3,13 @@ package fr.esilv.s8.mobileappdev.final_project.ui.Asso;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,11 +19,14 @@ import java.util.List;
 
 import fr.esilv.s8.mobileappdev.final_project.R;
 
+
 public class AdapterAsso extends RecyclerView.Adapter<AdapterAsso.MyViewHolder> {
+
 
     private final List<Pair<String, String>> characters = Arrays.asList(
             Pair.create("L'histoire", "Slide Session est une asso créée en xxxx etc. "),
             Pair.create("Ce que l'on fait", "Tout au long de l'année nous nous engageons dans de nombreux projets etc."),
+            Pair.create("Voyage au ski", "xxxx"),
             Pair.create("Altigliss", "Altigliss c'est le championnat du monde étudiant de ski."),
             Pair.create("Nos sponsors", "xxxxxxx"),
             Pair.create("Notre devise", "xxxxx")
@@ -33,6 +39,8 @@ public class AdapterAsso extends RecyclerView.Adapter<AdapterAsso.MyViewHolder> 
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.activity_adapter_asso, parent, false);
         return new MyViewHolder(view);
@@ -45,6 +53,8 @@ public class AdapterAsso extends RecyclerView.Adapter<AdapterAsso.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+
+
 
         private final TextView name;
         private final TextView description;

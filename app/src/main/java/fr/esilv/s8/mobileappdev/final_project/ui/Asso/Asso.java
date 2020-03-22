@@ -15,11 +15,9 @@ import fr.esilv.s8.mobileappdev.final_project.R;
 
 public class Asso extends AppCompatActivity {
 
-    private TextView mName;
+    public TextView mName;
     private Button mButton;
     private RecyclerView rv;
-
-
 
 
     @Override
@@ -36,12 +34,11 @@ public class Asso extends AppCompatActivity {
                 str = intent.getStringExtra("name"); // on récupère la valeur associée à la clé
             }
             TextView mName = (TextView) findViewById(R.id.activity_asso_name);
-            mName.setText(str); // on affiche le texte recupere
+            mName.setText(str + ", voici toutes les informations qui feront de toi un véritable Slideur."); // on affiche le texte recupere
         }
 
-        mButton = (Button) findViewById(R.id.activity_asso_close);
-        mName = (TextView) findViewById(R.id.activity_asso_name);
 
+        mButton = (Button) findViewById(R.id.activity_asso_close);
         rv = (RecyclerView) findViewById(R.id.acticity_asso_rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new AdapterAsso());

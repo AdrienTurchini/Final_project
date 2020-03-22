@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E90EA">
+    android:background="#026fbf">
 
     <TextView
         android:id="@+id/fragment_home_welcomeText"
@@ -52,6 +52,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="40dp"
         android:padding="30dp"
+        android:background="#f1b800"
         android:text="Click to discover the association"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -64,6 +65,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="40dp"
         android:padding="30dp"
+        android:background="#f1b800"
         android:text="Click to discover the team"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
