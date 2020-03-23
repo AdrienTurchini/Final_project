@@ -23,14 +23,7 @@ import fr.esilv.s8.mobileappdev.final_project.R;
 public class AdapterAsso extends RecyclerView.Adapter<AdapterAsso.MyViewHolder> {
 
 
-    private final List<Pair<String, String>> characters = Arrays.asList(
-            Pair.create("L'histoire", "Slide Session est une asso créée en xxxx etc. "),
-            Pair.create("Ce que l'on fait", "Tout au long de l'année nous nous engageons dans de nombreux projets etc."),
-            Pair.create("Voyage au ski", "xxxx"),
-            Pair.create("Altigliss", "Altigliss c'est le championnat du monde étudiant de ski."),
-            Pair.create("Nos sponsors", "xxxxxxx"),
-            Pair.create("Notre devise", "xxxxx")
-    );
+
 
     private Context context;
     private String[] title;
@@ -80,18 +73,6 @@ public class AdapterAsso extends RecyclerView.Adapter<AdapterAsso.MyViewHolder> 
                             .show();
                 }
             });
-
-
         }
-
-        /*
-        public void display(Pair<String, String> pair) {
-            currentPair = pair;
-            name.setText(pair.first);
-            description.setText(pair.second);
-        }
-        */
-
     }
-
 }
