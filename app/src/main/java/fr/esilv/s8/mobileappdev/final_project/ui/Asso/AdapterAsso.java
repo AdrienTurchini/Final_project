@@ -32,15 +32,23 @@ public class AdapterAsso extends RecyclerView.Adapter<AdapterAsso.MyViewHolder> 
             Pair.create("Notre devise", "xxxxx")
     );
 
+    private Context context;
+    private String[] title;
+    private String[] desc;
+
+    AdapterAsso(Context context, String[] title, String[] desc){
+        this.context = context;
+        this.title = title;
+        this.desc = desc;
+    }
+
     @Override
     public int getItemCount() {
-        return characters.size();
+        return title.length;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.activity_adapter_asso, parent, false);
         return new MyViewHolder(view);
@@ -48,14 +56,11 @@ public class AdapterAsso extends RecyclerView.Adapter<AdapterAsso.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Pair<String, String> pair = characters.get(position);
-        holder.display(pair);
+        holder.name.setText(title[position]);
+        holder.description.setText(desc[position]);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-
-
-
         private final TextView name;
         private final TextView description;
 
@@ -63,26 +68,30 @@ public class AdapterAsso extends RecyclerView.Adapter<AdapterAsso.MyViewHolder> 
 
         public MyViewHolder(final View itemView) {
             super(itemView);
-
-            name = ((TextView) itemView.findViewById(R.id.name));
+            name = (TextView) itemView.findViewById(R.id.name);
             description = ((TextView) itemView.findViewById(R.id.description));
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     new AlertDialog.Builder(itemView.getContext())
-                            .setTitle(currentPair.first)
-                            .setMessage(currentPair.second)
+                            .setTitle(name.getText().toString())
+                            .setMessage(description.getText().toString())
                             .show();
                 }
             });
+
+
         }
 
+        /*
         public void display(Pair<String, String> pair) {
             currentPair = pair;
             name.setText(pair.first);
             description.setText(pair.second);
         }
+        */
+
     }
 
 }

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="15dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#f1b800"
         android:textAppearance="?android:attr/textAppearanceLarge"
         tools:text="Nom"></TextView>
 
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textColor="#F0FFFF"
+        android:textColor="#000000"
         android:textAlignment="center"
         tools:text="Description"></TextView>
 </LinearLayout>
