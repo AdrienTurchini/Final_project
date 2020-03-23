@@ -23,7 +23,7 @@ public class WeatherViewModel extends ViewModel {
 
     public WeatherViewModel() {
         weatherText = new MutableLiveData<>();
-        weatherText.setValue("This is weather fragment");
+        weatherText.setValue("Please try later, there is a connexion or API problem.");
         getCurrentData();
     }
 
