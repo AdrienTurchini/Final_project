@@ -26,5 +26,7 @@
         android:layout_gravity="center_horizontal"
         android:textColor="#000000"
         android:textAlignment="center"
+        android:maxLines="5"
+        android:ellipsize="end"
         tools:text="Description"></TextView>
 </LinearLayout>

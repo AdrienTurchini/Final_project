@@ -36,7 +36,7 @@ public class Team extends AppCompatActivity {
                 str = intent.getStringExtra("name"); // on récupère la valeur associée à la clé
             }
             TextView mName = (TextView) findViewById(R.id.activity_team_name);
-            mName.setText(str + ", on te présente ici les membres de Slide Session, contacte les si tu as des questions."); // on affiche le texte recupere
+            mName.setText(str + ", voici les membres de Slide Session, contacte les si tu as des questions !"); // on affiche le texte recupere
         }
 
 
