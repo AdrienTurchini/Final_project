@@ -11,10 +11,7 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/nav_instagram"
-        android:name="fr.esilv.s8.mobileappdev.final_project.ui.gallery.InstagramFragment"
-        android:label="@string/menu_instagram" />
+
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -22,11 +19,6 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 
-    <fragment
-        android:id="@+id/nav_tools"
-        android:name="fr.esilv.s8.mobileappdev.final_project.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
 
     <fragment
         android:id="@+id/nav_share"
