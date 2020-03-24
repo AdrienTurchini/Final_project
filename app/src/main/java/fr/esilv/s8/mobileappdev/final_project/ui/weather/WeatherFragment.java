@@ -21,9 +21,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import fr.esilv.s8.mobileappdev.final_project.MainActivity;
 import fr.esilv.s8.mobileappdev.final_project.R;
 import fr.esilv.s8.mobileappdev.final_project.ui.Asso.Asso;
+import fr.esilv.s8.mobileappdev.final_project.ui.weather.WeatherResponse.*;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +41,7 @@ public class WeatherFragment extends Fragment {
     private Button button;
     private static final int SECOND_ACTIVITY_REQUEST_CODE = 0;
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,6 +52,7 @@ public class WeatherFragment extends Fragment {
 
 
         weather = root.findViewById(R.id.text_weather);
+
         search = root.findViewById(R.id.weather_search);
         button = root.findViewById(R.id.weather_button);
 
@@ -109,26 +115,29 @@ public class WeatherFragment extends Fragment {
                     temPMax = Math.round(temPMax * 1.0)/1.0;
                     int tempMax = (int) temPMax;
 
+
+
                     String stringBuilder = "Country: " +
                             weatherResponse.sys.country +
                             "\n" +
+                            "City Name : " +
+                            weatherResponse.name +
+                            "\n \n" +
                             "Temperature: " +
-                            temp +
+                            temp + "°C" +
                             "\n" +
                             "Temperature(Min): " +
-                            tempMin+
+                            tempMin+ "°C" +
                             "\n" +
                             "Temperature(Max): " +
-                            tempMax +
-                            "\n" +
+                            tempMax + "°C" +
+                            "\n \n" +
                             "Humidity: " +
-                            weatherResponse.main.humidity +
+                            weatherResponse.main.humidity + "%" +
                             "\n" +
                             "Pressure: " +
-                            weatherResponse.main.pressure +
-                            "\n" +
-                            "City Name : " +
-                            weatherResponse.name;
+                            weatherResponse.main.pressure + " Pa";
+
 
                     weather.setText(stringBuilder);
                 }
