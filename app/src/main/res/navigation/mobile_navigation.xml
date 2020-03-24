@@ -21,18 +21,6 @@
 
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="fr.esilv.s8.mobileappdev.final_project.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="fr.esilv.s8.mobileappdev.final_project.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
-
-    <fragment
         android:id="@+id/nav_weather"
         android:name="fr.esilv.s8.mobileappdev.final_project.ui.weather.WeatherFragment"
         android:label="@string/weather"
