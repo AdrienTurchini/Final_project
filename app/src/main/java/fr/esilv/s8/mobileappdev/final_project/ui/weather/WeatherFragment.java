@@ -20,14 +20,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 import fr.esilv.s8.mobileappdev.final_project.MainActivity;
 import fr.esilv.s8.mobileappdev.final_project.R;
 import fr.esilv.s8.mobileappdev.final_project.ui.Asso.Asso;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class WeatherFragment extends Fragment {
 
-    private WeatherViewModel weatherViewModel;
+    private String AppId = "7d05663265bf2d1761640846a820923a";
+
     private TextView weather;
     private EditText search;
     private Button button;
@@ -38,18 +42,11 @@ public class WeatherFragment extends Fragment {
 
 
 
-        weatherViewModel =
-                ViewModelProviders.of(this).get(WeatherViewModel.class);
+
         View root = inflater.inflate(R.layout.weather_fragment, container, false);
 
-        final TextView textView = root.findViewById(R.id.text_weather);
-        weatherViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
 
+        weather = root.findViewById(R.id.text_weather);
         search = root.findViewById(R.id.weather_search);
         button = root.findViewById(R.id.weather_button);
 
@@ -73,7 +70,75 @@ public class WeatherFragment extends Fragment {
             public void afterTextChanged(Editable s) {
             }
         });
-        
+
+        // ajoute un listener qui regarde si on a cliqué sur le bouton
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // l'utilisateur a cliqué sur le bouton et cela lance la nouvelle activite en communiquant avec l'ActivityManger de Android
+                Intent MainActivity = new Intent(getActivity(), MainActivity.class);
+                String searchInput = search.getText().toString();
+                MainActivity.putExtra("searchInput", searchInput);
+                startActivityForResult(MainActivity, SECOND_ACTIVITY_REQUEST_CODE);
+                getActivity().finish();
+            }
+        });
+
+        WeatherService dataService = RetrofitInstance.getRetrofit().create(WeatherService.class);
+
+
+        Call<WeatherResponse> weatherResponseCall = dataService
+                .getCurrentWeatherData(MainActivity.city,AppId);
+
+        weatherResponseCall.enqueue(new Callback<WeatherResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<WeatherResponse> call, @NonNull Response<WeatherResponse> response) {
+                if (response.code() == 200) {
+                    WeatherResponse weatherResponse = response.body();
+                    assert weatherResponse != null;
+
+                    double temP = weatherResponse.main.temp - (273.15);
+                    temP = Math.round(temP * 1.0)/1.0;
+                    int temp = (int) temP;
+
+                    double temPMin = weatherResponse.main.temp_min - (273.15);
+                    temPMin = Math.round(temPMin * 1.0)/1.0;
+                    int tempMin = (int) temPMin;
+
+                    double temPMax = weatherResponse.main.temp_max - (273.15);
+                    temPMax = Math.round(temPMax * 1.0)/1.0;
+                    int tempMax = (int) temPMax;
+
+                    String stringBuilder = "Country: " +
+                            weatherResponse.sys.country +
+                            "\n" +
+                            "Temperature: " +
+                            temp +
+                            "\n" +
+                            "Temperature(Min): " +
+                            tempMin+
+                            "\n" +
+                            "Temperature(Max): " +
+                            tempMax +
+                            "\n" +
+                            "Humidity: " +
+                            weatherResponse.main.humidity +
+                            "\n" +
+                            "Pressure: " +
+                            weatherResponse.main.pressure +
+                            "\n" +
+                            "City Name : " +
+                            weatherResponse.name;
+
+                    weather.setText(stringBuilder);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<WeatherResponse> call, @NonNull Throwable t) {
+                weather.setText(t.getMessage());
+            }
+        });
 
         return root;
     }
