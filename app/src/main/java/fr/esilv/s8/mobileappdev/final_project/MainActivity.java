@@ -20,11 +20,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
+import android.widget.EditText;
+
+import fr.esilv.s8.mobileappdev.final_project.ui.weather.WeatherFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String city = "";
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -37,17 +42,34 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        // Main = home, others are not at the same level
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home,
-                R.id.nav_share, R.id.nav_send)
+                R.id.nav_home)
                 .setDrawerLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+
+
+
+        Intent intent = getIntent();
+        if(intent != null)
+        {
+            if(intent.hasExtra("searchInput")){
+                city = intent.getStringExtra("searchInput");
+                if (savedInstanceState == null) {
+                    navigationView.getMenu().performIdentifierAction(R.id.nav_weather, 1);
+                }
+            }
+            else
+            {
+                city = "megeve";
+            }
+
+        }
 
     }
 
@@ -64,4 +86,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }
