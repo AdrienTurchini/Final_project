@@ -9,4 +9,4 @@
         android:layout_height="130dp"
         android:layout_weight="1"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/logo_slide" />
+        app:srcCompat="@drawable/slide" />
